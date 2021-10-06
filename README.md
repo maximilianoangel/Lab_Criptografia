@@ -14,4 +14,4 @@ Se debe ingresar el siguiente comando en una terminal ubicada en la direccion do
 
 En el caso de ingresar un archivo de texto, seria el siguiente comando.
 
-``python3 hash.py archivo.txt . ``
+``python3 hash.py archivo.txt ``
