@@ -1,7 +1,11 @@
 # Lab_Criptografia
-##hash.py
+
+## hash.py
+
+
 El programa hash.py recibe como entrada un string o un archivo txt y luego muestra por consola el hash obtenido. Es necesario importar fileinput.
 Este progrma fue probado en ubuntu.
+
 **Ejemplos:**
 
 Se debe ingresar el siguiente comando en una terminal ubicada en la direccion donde se enceuntre hash.py.
