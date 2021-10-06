@@ -19,7 +19,14 @@ def hash(palabra,pos,Spos,aux):
         A=int(ord(palabra[pos]))
         B=int(ord(salt[Spos]))
         C=len(palabra)
-        aux.append(chr((B%A)+C))
+        if pos == 0:
+            D=int(ord(palabra[pos+1]))
+        elif pos%2 == 0:
+            print(pos)
+            D=int(ord(palabra[int(pos/2)]))
+        else:
+            D=int(ord(palabra[pos-1]))
+        aux.append(chr((B%A)+C+(D%A)))
         pos=pos+1
         Spos=Spos+1
         pal=hash(palabra,pos,Spos,aux)
@@ -64,7 +71,6 @@ def Iniciar(palabra):
         return aux2
     else:
         return hash(palabra,0,0,aux)
-
 
 if __name__ == '__main__':
     data=[]
