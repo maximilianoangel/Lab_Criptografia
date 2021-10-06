@@ -67,13 +67,8 @@ def Iniciar(palabra):
 
 
 if __name__ == '__main__':
-    opcion = int(input("Seleccione opcion:\n  1. Ingresar un dato unico\n  2. Ingrear archivos de datos\n "))
-    if opcion==1:
-        preguntar=input("Ingrese String a Hashear:\n")
-        print(Iniciar(preguntar))
-    elif opcion==2:
-        data=[]
-        for lines in fileinput.input():
-            data.append(lines.rstrip())
-        for palabra in data:
-            print("El Hash es: " + Iniciar(palabra) + "\n")
+    data=[]
+    for lines in fileinput.input():
+        data.append(lines.rstrip())
+    for palabra in data:
+        print("El Hash es: " + Iniciar(palabra) + "\n")
