@@ -22,10 +22,9 @@ def hash(palabra,pos,Spos,aux):
         if pos == 0:
             D=int(ord(palabra[pos+1]))
         elif pos%2 == 0:
-            print(pos)
-            D=int(ord(palabra[int(pos/2)]))
+            D=int(ord(aux[int(pos/2)]))
         else:
-            D=int(ord(palabra[pos-1]))
+            D=int(ord(aux[pos-1]))
         aux.append(chr((B%A)+C+(D%A)))
         pos=pos+1
         Spos=Spos+1
