@@ -16,3 +16,11 @@ Se debe ingresar el siguiente comando en una terminal ubicada en la direccion do
 En el caso de ingresar un archivo de texto, seria el siguiente comando.
 
 ``python3 hash.py -a archivo.txt ``
+
+En el caso de calcular la entropia de una palabra unica.
+
+``python3 hash.py -e -h palabra ``
+
+En el caso de calcular la entropia de un archivo txt.
+
+``python3 hash.py -e -a archivo.txt ``
