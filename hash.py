@@ -94,11 +94,14 @@ print(len(a))
 if __name__ == '__main__':
     data=[]
     if sys.argv[1]== "-h":
+        data=[]
         data.append(sys.argv[2])
         for palabra in data:
             print("El Hash es: " + Iniciar(palabra) + "\n")
     elif sys.argv[1]== "-a":
-        for lines in fileinput.input():
+        data=[]
+        data.append(sys.argv[2])
+        for lines in fileinput.input(sys.argv[2]):
             data.append(lines.rstrip())
         for palabra in data:
             print("El Hash es: " + Iniciar(palabra) + "\n")
