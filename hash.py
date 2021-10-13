@@ -1,4 +1,5 @@
 import fileinput
+import sys
 def rellenar(palabra,pos):
     #cEsta funcion rellena una palabra menor a 32 caracteres con los caracteres contenidos en salt, se termina al tener 32 caracteres.
     salt=["A","b","C","d","E"]
@@ -92,7 +93,12 @@ print(len(a))
 
 if __name__ == '__main__':
     data=[]
-    for lines in fileinput.input():
-        data.append(lines.rstrip())
-    for palabra in data:
-        print("El Hash es: " + Iniciar(palabra) + "\n")
+    if sys.argv[1]== "-h":
+        data.append(sys.argv[2])
+        for palabra in data:
+            print("El Hash es: " + Iniciar(palabra) + "\n")
+    elif sys.argv[1]== "-a":
+        for lines in fileinput.input():
+            data.append(lines.rstrip())
+        for palabra in data:
+            print("El Hash es: " + Iniciar(palabra) + "\n")
