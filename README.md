@@ -5,7 +5,8 @@
 
 El programa hash.py recibe como entrada un string o un archivo txt y luego muestra por consola el hash obtenido. Es necesario importar fileinput.
 Este progrma fue probado en ubuntu.
-La funcion hash acepta caracteres Unicode, sin embargo, el caracter \ no es aceptado solo al final de una palabra unica. Esto es debido a que resulta ser un caracter especial con la funcionalidad de realizar saltos de linea o para agregar rutas.
+La funcion hash acepta caracteres Unicode, sin embargo, el caracter \ no es aceptado solo al final de una palabra unica. Esto es debido a que resulta ser un caracter especial, con la funcionalidad de realizar saltos de linea o para agregar rutas.
+
 **Ejemplos:**
 
 Se debe ingresar el siguiente comando en una terminal ubicada en la direccion donde se encuentre hash.py.
