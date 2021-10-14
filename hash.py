@@ -89,6 +89,7 @@ def Iniciar(palabra):
         return hash(palabra,0,0,aux)
 
 def entropia(palabra):
+    #La funcion entropia busca el ord mas grande dentro de todos los caracteres de palabra y luego calcula la entropia tomando como base el ord encontrado. Esta funcion recibe una palabra ya hasheada
     aux=0
     if len(palabra)==32:
         for a in palabra:
@@ -96,7 +97,7 @@ def entropia(palabra):
             if N>aux:
                 aux=N
         entr=len(palabra)*log(N,2)
-        print("La entropia es: " + str(entr))
+        print("La entropia es: " + str(entr) + "\n")
     else:
         print("Error: la palabra no posee 32 caracteres")
 
@@ -124,10 +125,10 @@ if __name__ == '__main__':
 
     elif sys.argv[1]== "-e" and sys.argv[2]== "-a":
         data=[]
-        data.append(sys.argv[2])
-        for lines in fileinput.input(sys.argv[2]):
+        data.append(sys.argv[3])
+        for lines in fileinput.input(sys.argv[3]):
             data.append(lines.rstrip())
         for palabra in data:
             h=Iniciar(palabra)
-            print("El Hash es: " + h + "\n")
+            print("El Hash es: " + h + " ")
             entropia(h)
