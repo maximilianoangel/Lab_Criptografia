@@ -1,5 +1,6 @@
 import fileinput
 import sys
+from math import log
 def rellenar(palabra,pos):
     #cEsta funcion rellena una palabra menor a 32 caracteres con los caracteres contenidos en salt, se termina al tener 32 caracteres.
     salt=["A","b","C","d","E"]
@@ -86,10 +87,18 @@ def Iniciar(palabra):
     else:
         aux=[]
         return hash(palabra,0,0,aux)
-val="sakdjasda/aa?¡¡?¡?¿'asdkjsakdj19823245354.-,-.{´pjkpo043504587823432бTTTTTTTTTTTTTTTTTTTTTTTTT_ttt.T/"
-a=Iniciar(val)
-print(a + " El largo es: " )
-print(len(a))
+
+def entropia(palabra):
+    aux=0
+    if len(palabra)==32:
+        for a in palabra:
+            N=int(ord(a))
+            if N>aux:
+                aux=N
+        entr=len(palabra)*log(N,2)
+        print("La entropia es: " + str(entr))
+    else:
+        print("Error: la palabra no posee 32 caracteres")
 
 if __name__ == '__main__':
     data=[]
@@ -105,3 +114,20 @@ if __name__ == '__main__':
             data.append(lines.rstrip())
         for palabra in data:
             print("El Hash es: " + Iniciar(palabra) + "\n")
+    elif sys.argv[1]== "-e" and sys.argv[2]== "-h":
+        data=[]
+        data.append(sys.argv[3])
+        for palabra in data:
+            h=Iniciar(palabra)
+            print("El Hash es: " + h + "\n")
+            entropia(h)
+
+    elif sys.argv[1]== "-e" and sys.argv[2]== "-a":
+        data=[]
+        data.append(sys.argv[2])
+        for lines in fileinput.input(sys.argv[2]):
+            data.append(lines.rstrip())
+        for palabra in data:
+            h=Iniciar(palabra)
+            print("El Hash es: " + h + "\n")
+            entropia(h)
