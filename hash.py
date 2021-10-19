@@ -14,9 +14,9 @@ def rellenar(palabra,pos):
     else:
         return palabra
 
-def hash(palabra,pos,Spos,aux):
+def hash(palabra,pos,Spos,aux,Tam):
     #recibe una palabra de 32 caracteres, con la funcion ord se calcula el valor en unicode de un caracteres y chr lo decodifica a string.
-    salt=["Z","W","R","Q","Y"]
+    salt=["Z","W","R","Q","Y","X"]
     if Spos == len(salt):
         Spos=0
     if pos<len(palabra):
@@ -29,18 +29,18 @@ def hash(palabra,pos,Spos,aux):
             D=int(ord(aux[int(pos/2)]))
         else:
             D=int(ord(aux[pos-1]))
-        E=int((B%A)+C+(D%A))
-        if (E<127):
+        E=int((B%A)+C+(D%A)+Tam)
+        if (E<255):
             X=E
         else:
-            if (E%2==0 and E<257):
+            if (E%2==0 and E<511):
                 X=int(E/2+A)
             else:
                 X=int(ord(salt[Spos])+A)
-        aux.append(chr((X)))
+        aux.append(chr((X+Tam)))
         pos=pos+1
         Spos=Spos+1
-        pal=hash(palabra,pos,Spos,aux)
+        pal=hash(palabra,pos,Spos,aux,Tam)
         return pal
     else:
         return aux
@@ -67,11 +67,12 @@ def Iniciar(palabra):
     aux2=''
     TamañoOriginal=len(palabra)
     if TamañoOriginal> 32:
+        aux2=''
         red=reducir(palabra,TamañoOriginal-1,0,aux)
         for v in red:
             aux2=aux2+v
         aux=[]
-        f=hash(aux2,0,0,aux)
+        f=hash(aux2,0,0,aux,TamañoOriginal)
         aux2=''
         for v in f:
             aux2=aux2+v
@@ -80,13 +81,13 @@ def Iniciar(palabra):
         aux=[]
         aux2=''
         pal=rellenar(palabra,0)
-        val=hash(pal,0,0,aux)
+        val=hash(pal,0,0,aux,TamañoOriginal)
         for v in val:
             aux2=aux2+v
         return aux2
     else:
         aux=[]
-        return hash(palabra,0,0,aux)
+        return hash(palabra,0,0,aux,TamañoOriginal)
 
 def entropia(palabra):
     #La funcion entropia busca el ord mas grande dentro de todos los caracteres de palabra y luego calcula la entropia tomando como base el ord encontrado. Esta funcion recibe una palabra ya hasheada
@@ -110,7 +111,6 @@ if __name__ == '__main__':
             print("El Hash es: " + Iniciar(palabra) + "\n")
     elif sys.argv[1]== "-a":
         data=[]
-        data.append(sys.argv[2])
         for lines in fileinput.input(sys.argv[2]):
             data.append(lines.rstrip())
         for palabra in data:
@@ -124,8 +124,7 @@ if __name__ == '__main__':
             entropia(h)
 
     elif sys.argv[1]== "-e" and sys.argv[2]== "-a":
-        data=[]
-        data.append(sys.argv[3])
+        print(sys.argv[3])
         for lines in fileinput.input(sys.argv[3]):
             data.append(lines.rstrip())
         for palabra in data:
