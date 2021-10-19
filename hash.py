@@ -38,7 +38,7 @@ def hash(palabra,pos,Spos,aux,Tam):
                 X=int(E/2+A)
             else:
                 X=int(ord(salt[Spos])+A)
-        if X+Tam>128 and X+Tam<200:
+        if X+Tam>127 and X+Tam<200:
             var=200-X+Tam
             var=X+var
         else:
@@ -105,7 +105,7 @@ def entropia(palabra):
             if N>aux:
                 aux=N
         entr=len(palabra)*log(N,2)
-        print("La entropia es: " + str(entr) + " ")
+        print("La entropia es: " + str(entr) + "\n")
     else:
         print("Error: la palabra no posee 32 caracteres")
 
@@ -121,13 +121,16 @@ if __name__ == '__main__':
             print(str(Fin-Inicio)+ "\n")
     elif sys.argv[1]== "-a":
         data=[]
+        Total=0
         for lines in fileinput.input(sys.argv[2]):
             data.append(lines.rstrip())
         for palabra in data:
             Inicio=time.time()
-            print("El Hash es: " + Iniciar(palabra) + "\n")
+            h=Iniciar(palabra)
             Fin=time.time()
-            print(str(Fin-Inicio)+ "\n")
+            print("El Hash es: " + h + " ")
+            Total=Total+Fin-Inicio
+        print(str(Total)+ "\n")
     elif sys.argv[1]== "-e" and sys.argv[2]== "-h":
         data=[]
         data.append(sys.argv[3])
@@ -141,6 +144,7 @@ if __name__ == '__main__':
 
     elif sys.argv[1]== "-e" and sys.argv[2]== "-a":
         data=[]
+        Total=0
         for lines in fileinput.input(sys.argv[3]):
             data.append(lines.rstrip())
         for palabra in data:
@@ -149,4 +153,5 @@ if __name__ == '__main__':
             Fin=time.time()
             print("El Hash es: " + h + " ")
             entropia(h)
-            print(str(Fin-Inicio)+ "\n")
+            Total=Total+Fin-Inicio
+        print(str(Total)+ "\n")
