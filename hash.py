@@ -38,7 +38,12 @@ def hash(palabra,pos,Spos,aux,Tam):
                 X=int(E/2+A)
             else:
                 X=int(ord(salt[Spos])+A)
-        aux.append(chr((X+Tam)))
+        if X+Tam>128 and X+Tam<200:
+            var=200-X+Tam
+            var=X+var
+        else:
+            var=X+Tam
+        aux.append(chr((var)))
         pos=pos+1
         Spos=Spos+1
         pal=hash(palabra,pos,Spos,aux,Tam)
@@ -68,6 +73,7 @@ def Iniciar(palabra):
     aux2=''
     TamañoOriginal=len(palabra)
     if TamañoOriginal> 32:
+        aux=[]
         aux2=''
         red=reducir(palabra,TamañoOriginal-1,0,aux)
         for v in red:
@@ -134,6 +140,7 @@ if __name__ == '__main__':
             print(str(Fin-Inicio)+ "\n")
 
     elif sys.argv[1]== "-e" and sys.argv[2]== "-a":
+        data=[]
         for lines in fileinput.input(sys.argv[3]):
             data.append(lines.rstrip())
         for palabra in data:
