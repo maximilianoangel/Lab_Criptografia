@@ -1,6 +1,7 @@
 import fileinput
 import sys
 from math import log
+import time
 def rellenar(palabra,pos):
     #cEsta funcion rellena una palabra menor a 32 caracteres con los caracteres contenidos en salt, se termina al tener 32 caracteres.
     salt=["A","b","C","d","E"]
@@ -98,7 +99,7 @@ def entropia(palabra):
             if N>aux:
                 aux=N
         entr=len(palabra)*log(N,2)
-        print("La entropia es: " + str(entr) + "\n")
+        print("La entropia es: " + str(entr) + " ")
     else:
         print("Error: la palabra no posee 32 caracteres")
 
@@ -108,26 +109,37 @@ if __name__ == '__main__':
         data=[]
         data.append(sys.argv[2])
         for palabra in data:
+            Inicio=time.time()
             print("El Hash es: " + Iniciar(palabra) + "\n")
+            Fin=time.time()
+            print(str(Fin-Inicio)+ "\n")
     elif sys.argv[1]== "-a":
         data=[]
         for lines in fileinput.input(sys.argv[2]):
             data.append(lines.rstrip())
         for palabra in data:
+            Inicio=time.time()
             print("El Hash es: " + Iniciar(palabra) + "\n")
+            Fin=time.time()
+            print(str(Fin-Inicio)+ "\n")
     elif sys.argv[1]== "-e" and sys.argv[2]== "-h":
         data=[]
         data.append(sys.argv[3])
         for palabra in data:
+            Inicio=time.time()
             h=Iniciar(palabra)
+            Fin=time.time()
             print("El Hash es: " + h + "\n")
             entropia(h)
+            print(str(Fin-Inicio)+ "\n")
 
     elif sys.argv[1]== "-e" and sys.argv[2]== "-a":
-        print(sys.argv[3])
         for lines in fileinput.input(sys.argv[3]):
             data.append(lines.rstrip())
         for palabra in data:
+            Inicio=time.time()
             h=Iniciar(palabra)
+            Fin=time.time()
             print("El Hash es: " + h + " ")
             entropia(h)
+            print(str(Fin-Inicio)+ "\n")
