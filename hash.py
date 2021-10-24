@@ -71,6 +71,7 @@ def Iniciar(palabra):
     #verifica el tamaño de la palabra, llama a la funcion adecuada y retorna la palabra hasheada.
     aux=[]
     aux2=''
+    print(palabra)
     TamañoOriginal=len(palabra)
     if TamañoOriginal> 32:
         aux=[]
@@ -94,7 +95,11 @@ def Iniciar(palabra):
         return aux2
     else:
         aux=[]
-        return hash(palabra,0,0,aux,TamañoOriginal)
+        aux2=''
+        val=hash(palabra,0,0,aux,TamañoOriginal)
+        for v in val:
+            aux2=aux2+v
+        return aux2
 
 def entropia(palabra):
     #La funcion entropia busca el ord mas grande dentro de todos los caracteres de palabra y luego calcula la entropia tomando como base el ord encontrado. Esta funcion recibe una palabra ya hasheada
@@ -122,7 +127,8 @@ if __name__ == '__main__':
     elif sys.argv[1]== "-a":
         data=[]
         Total=0
-        for lines in fileinput.input(sys.argv[2]):
+        file = open(sys.argv[2],encoding="Latin-1")
+        for lines in file:
             data.append(lines.rstrip())
         for palabra in data:
             Inicio=time.time()
@@ -145,7 +151,8 @@ if __name__ == '__main__':
     elif sys.argv[1]== "-e" and sys.argv[2]== "-a":
         data=[]
         Total=0
-        for lines in fileinput.input(sys.argv[3]):
+        file = open(sys.argv[3],encoding="Latin-1")
+        for lines in file:
             data.append(lines.rstrip())
         for palabra in data:
             Inicio=time.time()

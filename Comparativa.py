@@ -42,9 +42,11 @@ if __name__ == '__main__':
         TotalM=0
         TotalS=0
         TotalSHA=0
-        for lines in fileinput.input(sys.argv[2]):
+        file = open(sys.argv[2],encoding="Latin-1")
+        for lines in file:
             data.append(lines.rstrip())
         for palabra in data:
+            print(palabra)
             InicioM=time.time()
             h=hashlib.new("md5")
             h.update(palabra.encode('utf-8'))
@@ -97,9 +99,11 @@ if __name__ == '__main__':
         TotalM=0
         TotalS=0
         TotalSHA=0
-        for lines in fileinput.input(sys.argv[3]):
+        file = open(sys.argv[3],encoding="Latin-1")
+        for lines in file:
             data.append(lines.rstrip())
         for palabra in data:
+            print(palabra)
             InicioM=time.time()
             h=hashlib.new("md5")
             h.update(palabra.encode('utf-8'))
