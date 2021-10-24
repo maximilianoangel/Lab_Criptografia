@@ -92,7 +92,7 @@ def Iniciar(palabra):
         f=hash(palabra,0,0,aux,TamañoOriginal)
     aux=''
     for v in f:
-            aux2=aux2+v
+        aux2=aux2+v
     return aux2
 
 
