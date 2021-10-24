@@ -81,25 +81,20 @@ def Iniciar(palabra):
             aux2=aux2+v
         aux=[]
         f=hash(aux2,0,0,aux,TamañoOriginal)
-        aux2=''
-        for v in f:
-            aux2=aux2+v
-        return aux2
     elif TamañoOriginal< 32:
         aux=[]
         aux2=''
         pal=rellenar(palabra,0)
-        val=hash(pal,0,0,aux,TamañoOriginal)
-        for v in val:
-            aux2=aux2+v
-        return aux2
+        f=hash(pal,0,0,aux,TamañoOriginal)
     else:
         aux=[]
         aux2=''
-        val=hash(palabra,0,0,aux,TamañoOriginal)
-        for v in val:
+        f=hash(palabra,0,0,aux,TamañoOriginal)
+    aux=''
+    for v in f:
             aux2=aux2+v
-        return aux2
+    return aux2
+
 
 def entropia(palabra):
     #La funcion entropia busca el ord mas grande dentro de todos los caracteres de palabra y luego calcula la entropia tomando como base el ord encontrado. Esta funcion recibe una palabra ya hasheada
