@@ -69,8 +69,6 @@ def reducir(palabra,PosF,PosI,aux):
 
 def Iniciar(palabra):
     #verifica el tamaño de la palabra, llama a la funcion adecuada y retorna la palabra hasheada.
-    aux=[]
-    aux2=''
     print(palabra)
     TamañoOriginal=len(palabra)
     if TamañoOriginal> 32:
@@ -88,9 +86,8 @@ def Iniciar(palabra):
         f=hash(pal,0,0,aux,TamañoOriginal)
     else:
         aux=[]
-        aux2=''
         f=hash(palabra,0,0,aux,TamañoOriginal)
-    aux=''
+    aux2=''
     for v in f:
         aux2=aux2+v
     return aux2
