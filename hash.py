@@ -39,7 +39,7 @@ def hash(palabra,pos,Spos,aux,Tam):
             else:
                 X=int(ord(salt[Spos])+A)
         if X+Tam>127 and X+Tam<200:
-            var=200-X+Tam
+            var=200-X-Tam
             var=X+var
         else:
             var=X+Tam
